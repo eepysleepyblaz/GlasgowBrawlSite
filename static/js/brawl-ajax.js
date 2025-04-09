@@ -1,10 +1,9 @@
 $(document).ready(function() {
     $('.validate_button').click(function() {
         var decklist;
-        decklist = $('.deck_box').textContent;
-
+        decklist = $('#deck_box').val();
         $.get('/brawl/validate_decklist/',
-            {'decklist': decklist},
+            {'deck': decklist},
             function(data) {
                 $('.errors').text(data);
             }

@@ -45,9 +45,13 @@ def home(request):
 
 class ValidateDecklistView(View):
     def get(self, request):
+        try:
+            decklist = request.GET['deck']
 
-            decklist = request.GET['decklist']
+            if decklist == "":
+                return
 
+            decklist = decklist.split("\n")
             with open('static/txt/Banlist.txt', "r") as f:
                     values = f.read()
                     values = values.split("\n")
@@ -59,10 +63,12 @@ class ValidateDecklistView(View):
                     banlist = values
 
             error_string = ""
+            deck_size = 0
             for card in decklist:
                 card = card.split("(")[0][:-1]
-                card_quantity = card.split(" ")[0]
-                card_name = card.split(" ")[1:]
+                card_quantity = int(card.split(" ")[0])
+                deck_size += card_quantity
+                card_name = " ".join(card.split(" ")[1:])
 
                 if card_quantity > 1:
                     if card_name not in ["Mountain", "Island", "Plains", "Swamp", "Forest"]:
@@ -75,4 +81,5 @@ class ValidateDecklistView(View):
                 return HttpResponse("Nothing wrong with this deck list")
             else:
                 return HttpResponse("Deck list not valid as:\n" + error_string)
-
+        except:
+            return HttpResponse("Something went wrong.")
