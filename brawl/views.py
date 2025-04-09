@@ -78,7 +78,7 @@ class ValidateDecklistView(View):
                     error_string = error_string + f"{card_name} is banned.\n"
             
             if error_string == "":
-                return HttpResponse("Nothing wrong with this deck list")
+                return HttpResponse("Decklist valid")
             else:
                 return HttpResponse("Deck list not valid as:\n" + error_string)
         except:
