@@ -1,0 +1,53 @@
+{% extends 'brawl/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Homepage
+{% endblock %}
+
+{% block stylesheet_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template_box.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+    <div class="container">
+        <h1 class="title">Glasgow Brawl Ban List Checker</h1>
+    </div>
+    <div class="container main_body">
+        <div class="box_body">
+            
+        </div>
+    </div>
+
+    <div class="container down">
+        <h1 class="title">Ban List</h1>
+    </div>
+
+    <div class="container down">
+        <h2 class="title">Banned as Commander</h2>
+    </div>
+
+    <div class="container main_body">
+        <div class="row">
+            {% for card in Commanders %}
+                <div class="col-lg-3 col-md-6 col-12 card_image">
+                    <img src="https://api.scryfall.com/cards/named?exact=|{{card}}&format=image"|card width="252" height="352" alt="{{card}}"|card>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container down">
+        <h2 class="title">Banned</h2>
+    </div>
+
+    <div class="container main_body">
+        <div class="row">
+            {% for card in Cards %}
+                <div class="col-lg-3 col-md-6 col-12 card_image">
+                    <img src="https://api.scryfall.com/cards/named?exact=|{{card}}&format=image"|card width="252" height="352" alt="{{card}}"|card>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
