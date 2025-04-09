@@ -11,10 +11,38 @@
 
 {% block body_block %}
     <div class="container">
-        <h1 class="title">Glasgow Brawl Ban List Checker</h1>
+        <h1 class="title">Glasgow Brawl Banlist Checker</h1>
     </div>
-    <div class="container main_body">
+    <div class="container main_body form_holder">
         <div class="box_body">
+            <div class="row">
+                <h4 class="up">Enter your deck list here</h4>
+                <p>(Must include quantity and card name)</p>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <h4 class="errors"></h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col up">
+                    <textarea class="deck_box" rows="" cols="1" minlength="1000" placeholder="1 Adarkar Wastes (M3C) 316
+1 Anguished Unmaking (PIP) 473 *F*
+1 Archon of Emeria (MB2) 4
+1 Arid Mesa (MH2) 244
+1 Baleful Strix (MKC) 200
+..."></textarea>
+                </div>
+
+            </div>
+            <div class="row button_row up">
+                <div class="col d-grid">
+                    <button class="btn submit_button validate_button">Submit</button>
+                </div>
+            </div>
+            
             
         </div>
     </div>

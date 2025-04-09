@@ -42,3 +42,37 @@ def home(request):
     context_dict['Commanders'] = values2
     context_dict['Images'] = cards_dict
     return render(request, 'brawl/home.html', context=context_dict)
+
+class ValidateDecklistView(View):
+    def get(self, request):
+
+            decklist = request.GET['decklist']
+
+            with open('static/txt/Banlist.txt', "r") as f:
+                    values = f.read()
+                    values = values.split("\n")
+                    
+                    values = set(values)
+                    values = list(values)
+
+                    values.sort()
+                    banlist = values
+
+            error_string = ""
+            for card in decklist:
+                card = card.split("(")[0][:-1]
+                card_quantity = card.split(" ")[0]
+                card_name = card.split(" ")[1:]
+
+                if card_quantity > 1:
+                    if card_name not in ["Mountain", "Island", "Plains", "Swamp", "Forest"]:
+                        error_string = error_string + f"Too many copies of {card_name}.\n"
+
+                if card_name in banlist:
+                    error_string = error_string + f"{card_name} is banned.\n"
+            
+            if error_string == "":
+                return HttpResponse("Nothing wrong with this deck list")
+            else:
+                return HttpResponse("Deck list not valid as:\n" + error_string)
+

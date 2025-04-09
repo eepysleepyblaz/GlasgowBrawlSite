@@ -13,7 +13,36 @@
     padding-top: 20px;
 }
 
+.up {
+    padding-bottom: 20px;
+}
+
 .card_image {
     text-align: center;
     margin-bottom: 20px;
+}
+
+.form_holder {
+    text-align: center;
+}
+
+textarea {
+    width: auto;
+    min-width: 1100px;
+    min-height: 150px;
+}
+
+.button_row {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.submit_button {
+    margin-bottom: 10px;
+    background-color: rgb(0, 162, 177);
+}
+
+.submit_button:hover {
+    margin-bottom: 10px;
+    background-color: rgba(15, 46, 79, 0.482);
 }
