@@ -65,6 +65,9 @@ class ValidateDecklistView(View):
             error_string = ""
             deck_size = 0
             for card in decklist:
+                if card == "":
+                    continue
+                
                 card = card.split("(")[0][:-1]
                 card_quantity = int(card.split(" ")[0])
                 deck_size += card_quantity
