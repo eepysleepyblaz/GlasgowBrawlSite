@@ -1,0 +1,4 @@
+#cursor_image {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}

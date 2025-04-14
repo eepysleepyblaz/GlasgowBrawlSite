@@ -62,7 +62,31 @@ def show_event(request, event_date):
 
     context_dict = {}
     context_dict['date'] = event_date
-    context_dict['decks'] = Deck.objects.filter(event_date=event_date)
+
+    decks = Deck.objects.filter(event_date=event_date)
+    return_decks = []
+    for deck in decks:
+        player = deck.player
+        name = deck.name
+        place = deck.place
+        deck = deck.deck_list.split("£")
+        commander_count = int(deck.pop(0))
+        commander1 = " ".join(deck.pop(0).split(" ")[1:])
+        commander1imagename = "+".join(commander1.split(" "))
+        if commander_count == 2:
+            commander2 = " ".join(deck.pop(0).split(" ")[1:])
+            commander2imagename = "+".join(commander2.split(" "))
+        else:
+            commander2 = None
+            commander2imagename = None
+
+        deck_cards = []        
+        for card in deck:
+            deck_cards.append({'name': " ".join(card.split(" ")[1:]), 'imgname': "+".join(card.split(" ")[1:]), 'quantity': int(card.split(" ")[0])})
+        return_decks.append({'name': name, 'player': player, 'place': place, 'commander1': commander1, 'commander2': commander2,
+                              'cards': deck_cards, 'commander1imgname': commander1imagename, 'commander2imgname': commander2imagename})
+
+    context_dict['decks'] = return_decks
 
     return render(request, 'brawl/show_event.html', context=context_dict)
 

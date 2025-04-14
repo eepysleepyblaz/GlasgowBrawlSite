@@ -6,16 +6,41 @@
 {% endblock %}
 
 {% block stylesheet_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/card_shower.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template_box.css' %}"/>
+{% endblock %}
+
+{% block script_block %}
+    <script src="{% static 'js/card_shower.js' %}"></script>
 {% endblock %}
 
 {% block body_block %}
 <div>
+    <img id="cursor_image" src="">
     <div class="container-xxl">
         <div class="row title">
             <h1>Event on {{ date }}</h1>
         </div>
         <div class="row">
             <div class="col mx-auto main_body">
+                {% for deck in decks %}
+                    <div class="row mx-auto box_body_big main_body">
+                        <h2>{{ deck.name }} by {{ deck.player }}</h2>
+                        <h3>Place: {{ deck.place }}</h3>
+                        {% if deck.commander2 == None %}
+                            <h4>Commander: <p class="list_card" id={{deck.commander1imgname}} >{{ deck.commander1 }}</p></h4>
+                        {% else %}
+                            <h4>Commanders: {{ deck.commander1 }}, {{ deck.commander2}}</h4>
+                        {% endif %}
+                        <div class="row">
+                            {% for card in deck.cards %}
+                                <div class="col-lg-3 col-sm-6 col-12">
+                                    <p class="list_card" id={{card.imgname}} >{{ card.quantity }} {{ card.name }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
