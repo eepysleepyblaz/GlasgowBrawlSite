@@ -1,3 +1,4 @@
+from brawl.models import Deck
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
@@ -5,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.utils.decorators import method_decorator
+import datetime
 
 def home(request):
     context_dict = {}
@@ -42,6 +44,27 @@ def home(request):
     context_dict['Commanders'] = values2
     context_dict['Images'] = cards_dict
     return render(request, 'brawl/home.html', context=context_dict)
+
+def events(request):
+    events_dates_final = []
+    events_dates = Deck.objects.order_by('event_date').values_list('event_date').distinct()
+    for i in range(len(events_dates)):
+        events_dates_final.append(str(events_dates[i][0].strftime('%d-%m-%Y')))
+    context_dict = {}
+    context_dict['event_dates'] = events_dates_final
+    
+
+    return render(request, 'brawl/events.html', context=context_dict)
+
+def show_event(request, event_date):
+
+    event_date = datetime.datetime.strptime(event_date, '%d-%m-%Y').date()
+
+    context_dict = {}
+    context_dict['date'] = event_date
+    context_dict['decks'] = Deck.objects.filter(event_date=event_date)
+
+    return render(request, 'brawl/show_event.html', context=context_dict)
 
 class ValidateDecklistView(View):
     def get(self, request):

@@ -1,4 +1,4 @@
 from django import template
 
-from stroll.models import *
+from brawl.models import *
 register = template.Library()

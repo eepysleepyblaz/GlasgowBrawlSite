@@ -1,0 +1,30 @@
+{% extends 'brawl/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Events
+{% endblock %}
+
+{% block stylesheet_block %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/template_box.css' %}"/>
+{% endblock %}
+
+{% block body_block %}
+<div>
+    <div class="container-xxl">
+        <div class="row title">
+            <h1>Past Events</h1>
+            <p>Find the decks brought to previous events here</p>
+        </div>
+        <div class="row form_holder">
+            <div class="col mx-auto main_body box_body">
+                {% for event_date in event_dates %}
+                    <a href="{% url 'brawl:show_event' event_date %}"><h4>{{ event_date }}</h4></a>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

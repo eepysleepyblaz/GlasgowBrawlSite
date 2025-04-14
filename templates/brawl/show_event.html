@@ -1,0 +1,23 @@
+{% extends 'brawl/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Homepage
+{% endblock %}
+
+{% block stylesheet_block %}
+{% endblock %}
+
+{% block body_block %}
+<div>
+    <div class="container-xxl">
+        <div class="row title">
+            <h1>Event on {{ date }}</h1>
+        </div>
+        <div class="row">
+            <div class="col mx-auto main_body">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
