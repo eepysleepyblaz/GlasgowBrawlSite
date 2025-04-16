@@ -25,7 +25,8 @@
             <div class="col mx-auto main_body">
                 {% for deck in decks %}
                     <div class="row mx-auto box_body_big main_body">
-                        <h2>{{ deck.name }} by {{ deck.player }}</h2>
+                        <h2>{{ deck.name }}</h2>
+                        <!--<h2>{{ deck.name }} by {{ deck.player }}</h2>-->
                         <h3>Place: {{ deck.place }}</h3>
                         <h3>Record: {{ deck.wins }}-{{ deck.loses }}</h3>
                         {% if deck.commander2 == None %}
