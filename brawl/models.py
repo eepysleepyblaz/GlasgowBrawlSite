@@ -5,6 +5,8 @@ class Deck(models.Model):
     event_date = models.DateField(null=False)
 
     place = models.IntegerField(null=False)
+    wins = models.IntegerField(null=False, default=0)
+    loses = models.IntegerField(null=False, default=0)
 
     player = models.CharField(max_length=101, null=False)
 
