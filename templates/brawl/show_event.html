@@ -28,7 +28,7 @@
                         <h2>{{ deck.name }}</h2>
                         <!--<h2>{{ deck.name }} by {{ deck.player }}</h2>-->
                         <h3>Place: {{ deck.place }}</h3>
-                        <h3>Record: {{ deck.wins }}-{{ deck.loses }}</h3>
+                        <h3>Record: {{ deck.wins }}-{{ deck.loses }}-{{ deck.draws }}</h3>
                         {% if deck.commander2 == None %}
                             <h4>Commander: <p class="list_card" id={{deck.commander1imgname}} >{{ deck.commander1 }}</p></h4>
                         {% else %}

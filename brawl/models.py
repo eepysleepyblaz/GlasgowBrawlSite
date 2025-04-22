@@ -7,6 +7,7 @@ class Deck(models.Model):
     place = models.IntegerField(null=False)
     wins = models.IntegerField(null=False, default=0)
     loses = models.IntegerField(null=False, default=0)
+    draws = models.IntegerField(null=False, default=0)
 
     player = models.CharField(max_length=101, null=False)
 
