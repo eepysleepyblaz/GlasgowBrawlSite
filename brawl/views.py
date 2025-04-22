@@ -47,7 +47,7 @@ def home(request):
 
 def events(request):
     events_dates_final = []
-    events_dates = Deck.objects.order_by('event_date').values_list('event_date').distinct()
+    events_dates = Deck.objects.order_by('-event_date').values_list('event_date').distinct()
     for i in range(len(events_dates)):
         events_dates_final.append(str(events_dates[i][0].strftime('%d-%m-%Y')))
     context_dict = {}
