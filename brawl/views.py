@@ -71,6 +71,7 @@ def show_event(request, event_date):
         place = deck.place
         wins = deck.wins
         loses = deck.loses
+        draws = deck.draws
         deck = deck.deck_list.split("£")
         commander_count = int(deck.pop(0))
         commander1 = " ".join(deck.pop(0).split(" ")[1:])
@@ -85,7 +86,7 @@ def show_event(request, event_date):
         deck_cards = []        
         for card in deck:
             deck_cards.append({'name': " ".join(card.split(" ")[1:]), 'imgname': "+".join(card.split(" ")[1:]), 'quantity': int(card.split(" ")[0])})
-        return_decks.append({'name': name, 'player': player, 'wins': wins, 'loses': loses, 'place': place, 'commander1': commander1, 'commander2': commander2,
+        return_decks.append({'name': name, 'player': player, 'wins': wins, 'loses': loses, 'draws': draws, 'place': place, 'commander1': commander1, 'commander2': commander2,
                               'cards': deck_cards, 'commander1imgname': commander1imagename, 'commander2imgname': commander2imagename})
 
     context_dict['decks'] = return_decks
