@@ -63,7 +63,7 @@ def show_event(request, event_date):
     context_dict = {}
     context_dict['date'] = event_date
 
-    decks = Deck.objects.filter(event_date=event_date)
+    decks = Deck.objects.filter(event_date=event_date).order_by("place")
     return_decks = []
     for deck in decks:
         player = deck.player
